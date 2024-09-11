@@ -1,0 +1,14 @@
+musica: declaracoes execucao
+declaracoes: {declaracao}
+declaracao: declara_acorde | declara_frase
+declara_acorde: 'acorde' IDENT '{' notas '}'
+notas: {nota}
+nota: base acidente oitava
+base: 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G'
+acidente: '#' | 'b' | <<vazio>>
+oitava: NUM_INT
+declara_frase: 'frase' IDENT '{' frase '}'
+frase: {som}
+som: (acorde | nota | frase | 'pausa') '(' duracao ')'
+duracao: NUM_INT
+execucao: {som}
