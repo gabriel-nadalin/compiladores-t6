@@ -1,0 +1,13 @@
+#!/bin/bash
+
+mkdir -p "midi"
+mkdir -p "wav"
+
+# extrai apenas o nome do arquivo, removendo extensao e caminho
+NOME=$(echo $1 | awk -F'.' -f1 | rev | cut -d'/' -f1 | rev)
+
+# compilador.geraMidi()
+
+ARG="midi/$NOME.mid"
+
+sintetizador/target/debug/main $ARG
