@@ -1,6 +1,6 @@
-grammar nota
+grammar nota;
 
-musica: declaracoes execucao;
+musica: declaracoes execucao EOF;
 declaracoes: (declaracao)*;
 declaracao: declaracao_acorde | declaracao_frase;
 declaracao_acorde: 'acorde' IDENT acorde;
@@ -13,13 +13,8 @@ acorde_ident: acorde | IDENT;
 frase_ident: frase | IDENT;
 duracao: NUM_INT;
 execucao: (evento)*;
-comentario: '//' (~('\n'|'\r')) {skip();};
 NUM_INT: [0-9]+;
 NOTA: [A-G] [#b]? [0-9];
-IDENT: [a-zA-Z]([a-zA-Z]|[0-9]|'_')*;
-WS: ( ' '
-    | '\t'
-    | '\r'
-    | '\n'
-    ) {skip();}
-    ;
+IDENT: [a-zA-Z][a-zA-Z0-9_]*;
+Comentario: '//' ~[\r\n]* '\r'? '\n' -> skip;
+Whitespace: [ \t\r\n]+ -> skip;
