@@ -1,17 +1,23 @@
 #!/bin/bash
 
+if [ "$#" -lt 1 ]; then
+    echo "Uso: run <arquivo-entrada>"
+    exit 1
+fi
+
 pushd "sintetizador"
+echo "compilando sintetizador..."
 RUSTFLAGS="-A warnings" cargo build
 popd
-
-mkdir -p "midi"
-mkdir -p "wav"
 
 # extrai apenas o nome do arquivo, removendo extensao e caminho
 NOME=$(echo $1 | cut -d'.' -f1 | rev | cut -d'/' -f1 | rev)
 
+echo "gerando midi..."
+mkdir -p "midi"
 # compilador.geraMidi()
+MIDI="midi/$NOME.mid"
 
-ARG="midi/$NOME.mid"
-
-sintetizador/target/debug/main $ARG
+echo "sintetizando wav..."
+mkdir -p "wav"
+sintetizador/target/debug/main $MIDI
