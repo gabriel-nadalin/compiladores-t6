@@ -1,0 +1,2 @@
+#!/bin/bash
+java -jar /opt/antlr/antlr.jar -Dlanguage=Python3 "$@"

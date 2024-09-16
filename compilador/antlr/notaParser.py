@@ -1,4 +1,4 @@
-# Generated from nota.g4 by ANTLR 4.13.2
+# Generated from projeto/compilador/antlr/nota.g4 by ANTLR 4.13.1
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -91,7 +91,7 @@ class notaParser ( Parser ):
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
-        self.checkVersion("4.13.2")
+        self.checkVersion("4.13.1")
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
         self._predicates = None
 
@@ -126,12 +126,6 @@ class notaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitMusica" ):
                 listener.exitMusica(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitMusica" ):
-                return visitor.visitMusica(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -181,12 +175,6 @@ class notaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitDeclaracoes" ):
                 listener.exitDeclaracoes(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitDeclaracoes" ):
-                return visitor.visitDeclaracoes(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -242,12 +230,6 @@ class notaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitDeclaracao" ):
                 listener.exitDeclaracao(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitDeclaracao" ):
-                return visitor.visitDeclaracao(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -307,12 +289,6 @@ class notaParser ( Parser ):
             if hasattr( listener, "exitDeclaracao_acorde" ):
                 listener.exitDeclaracao_acorde(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitDeclaracao_acorde" ):
-                return visitor.visitDeclaracao_acorde(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -360,12 +336,6 @@ class notaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitAcorde" ):
                 listener.exitAcorde(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitAcorde" ):
-                return visitor.visitAcorde(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -427,12 +397,6 @@ class notaParser ( Parser ):
             if hasattr( listener, "exitDeclaracao_frase" ):
                 listener.exitDeclaracao_frase(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitDeclaracao_frase" ):
-                return visitor.visitDeclaracao_frase(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -481,12 +445,6 @@ class notaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitFrase" ):
                 listener.exitFrase(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitFrase" ):
-                return visitor.visitFrase(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -549,12 +507,6 @@ class notaParser ( Parser ):
             if hasattr( listener, "exitEvento" ):
                 listener.exitEvento(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitEvento" ):
-                return visitor.visitEvento(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -616,12 +568,6 @@ class notaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitEvento_tempo" ):
                 listener.exitEvento_tempo(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitEvento_tempo" ):
-                return visitor.visitEvento_tempo(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -690,12 +636,6 @@ class notaParser ( Parser ):
             if hasattr( listener, "exitAcorde_ident" ):
                 listener.exitAcorde_ident(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitAcorde_ident" ):
-                return visitor.visitAcorde_ident(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -754,12 +694,6 @@ class notaParser ( Parser ):
             if hasattr( listener, "exitFrase_ident" ):
                 listener.exitFrase_ident(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitFrase_ident" ):
-                return visitor.visitFrase_ident(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -814,12 +748,6 @@ class notaParser ( Parser ):
             if hasattr( listener, "exitDuracao" ):
                 listener.exitDuracao(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitDuracao" ):
-                return visitor.visitDuracao(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -864,12 +792,6 @@ class notaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitExecucao" ):
                 listener.exitExecucao(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExecucao" ):
-                return visitor.visitExecucao(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
