@@ -1,7 +1,7 @@
 from antlr4 import CommonTokenStream, FileStream
 from antlr.notaLexer import notaLexer
 from antlr.notaParser import notaParser
-from VisitadorArvore import VisitadorArvore
+from compilador.AnalisadorSemantico import AnalisadorSemantico
 
 import sys
 
@@ -17,9 +17,7 @@ if __name__ == '__main__':
     token_stream = CommonTokenStream(lexer)
     parser = notaParser(token_stream)
     tree = parser.musica()
-
-    # print(tree.toStringTree(recog=parser))
     
-    va = VisitadorArvore()
+    va = AnalisadorSemantico()
     va.visitar_no(tree)
     va.mostrar_erros()

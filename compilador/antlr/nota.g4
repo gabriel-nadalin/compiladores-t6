@@ -14,7 +14,7 @@ frase_ident: frase | IDENT;
 duracao: NUM_INT;
 execucao: (evento)*;
 NUM_INT: [0-9]+;
-NOTA: [A-G] [#b]? [0-9];
+NOTA: [A-G] [#b]? [1-8]; 
 IDENT: [a-zA-Z][a-zA-Z0-9_]*;
 Comentario: '//' ~[\r\n]* '\r'? '\n' -> skip;
 Whitespace: [ \t\r\n]+ -> skip;
