@@ -1,0 +1,6 @@
+#!/bin/bash
+docker run -it --rm \
+    -v ./compilador:/home/compilador \
+    -v ./testes:/home/testes \
+    -v ./musicas:/home/musicas \
+    nota
