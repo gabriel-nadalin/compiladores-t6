@@ -3,6 +3,7 @@ from compilador.antlr.notaLexer import notaLexer
 from compilador.antlr.notaParser import notaParser
 from compilador.AnalisadorSemantico import AnalisadorSemantico
 from compilador.GeradorMIDI import GeradorMIDI
+import subprocess
 
 import sys
 
@@ -23,7 +24,11 @@ if __name__ == '__main__':
     va.visitar_no(tree)
     va.mostrar_erros()
 
+    # Gerando o código objeto "midi" usado pelo interpretador midi
     gerador = GeradorMIDI()
     gerador.visitar_no(tree)
     nome = file_name.split('.')[0].split('/')[-1] + '.mid'
     gerador.arquivo.save("midi/" + nome)
+
+    # Rodando o interpretador midi
+    subprocess.run(["./compilador/sintetizador", f"midi/{nome}"])

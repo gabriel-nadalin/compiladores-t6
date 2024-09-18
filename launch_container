@@ -1,9 +1,0 @@
-#!/bin/bash
-docker run -it --rm \
-    -v ./compilador:/home/compilador \
-    -v ./testes:/home/testes \
-    -v ./musicas:/home/musicas \
-    -v ./midi:/home/midi \
-    -v ./wav:/home/wav \
-    -v ./sintetizador:/home/sintetizador \
-    nota
