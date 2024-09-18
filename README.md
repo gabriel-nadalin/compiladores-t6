@@ -4,6 +4,7 @@ Notação Objetiva Tonal Audível
 # Como rodar?
 1. Faça o setup inicial do projeto, buildando o sintetizador e instalando as dependências do python
 ```sh
+sudo apt install python3-venv
 ./setup_project
 ```
 2. Ative o Virtual Environment do python

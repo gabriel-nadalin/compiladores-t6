@@ -23,7 +23,9 @@ if __name__ == '__main__':
     va = AnalisadorSemantico()
     va.visitar_no(tree)
     va.mostrar_erros()
-
+    if len(va.erros) != 0:
+        print("Não foi possível terminar a compilação!")
+        exit(1)
     # Gerando o código objeto "midi" usado pelo interpretador midi
     gerador = GeradorMIDI()
     gerador.visitar_no(tree)
