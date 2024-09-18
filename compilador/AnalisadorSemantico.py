@@ -43,7 +43,7 @@ class AnalisadorSemantico:
                 
             case notaParser.AcordeContext():
                 lista_notas = []
-                for nota in children[1:-2]:     # Excluindo o primeiro e o último elementos ('{' e '}')
+                for nota in no.NOTA():     # Excluindo o primeiro e o último elementos ('{' e '}')
                     nome_nota = nota.getText()
                     if nome_nota in lista_notas:
                         linha = nota.symbol.line
