@@ -9,11 +9,14 @@ import subprocess
 
 import sys
 
+
+
 if __name__ == '__main__':
     if len(sys.argv) < 2:
         print('Nome do arquivo de entrada faltando!')
-        print('Uso: <path/arquivo>')
+        print('Uso: [--midi-only] <path/arquivo>')
         exit(1)
+    
     file_name = sys.argv[1]
 
     input_stream = FileStream(file_name, 'utf-8')
@@ -28,7 +31,7 @@ if __name__ == '__main__':
     erroSemantico = NotaErroSemantico(sys.stderr)
     parser.removeErrorListeners()
     parser.addErrorListener(erroSemantico)
-    
+
     tree = parser.musica()
     
     va = AnalisadorSemantico()
@@ -44,4 +47,5 @@ if __name__ == '__main__':
     gerador.arquivo.save("midi/" + nome)
 
     # Rodando o interpretador midi
-    subprocess.run(["./compilador/sintetizador", f"midi/{nome}"])
+    if not '--midi-only' in sys.argv:
+        subprocess.run(["./compilador/sintetizador", f"midi/{nome}"])

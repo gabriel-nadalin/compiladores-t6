@@ -17,6 +17,14 @@ python3 -m compilador.main <Path do arquivo fonte>
 ```
 O output sairá na pasta `wav`
 
+Exemplos de músicas podem ser encontrados na pasta `musicas`
+
+Além disso, é possível criar somente o arquivo midi usando a tag '--midi-only'
+```sh
+python3 -m compilador.main <Path do arquivo fonte> --midi-only
+```
+
+
 # Sintaxe da linguagem
 ## Nota
 A nota é o componente mais fundamental da linguagem. Cada nota será identificada e traduzida para dentro do arquivo midi, que pode ser lido por sintetizadores e programas específicos.
