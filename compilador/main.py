@@ -2,6 +2,8 @@ from antlr4 import CommonTokenStream, FileStream
 from compilador.antlr.notaLexer import notaLexer
 from compilador.antlr.notaParser import notaParser
 from compilador.AnalisadorSemantico import AnalisadorSemantico
+from compilador.NotaErrorSintatico import NotaErroSintatico
+from compilador.NotaErroSemantico import NotaErroSemantico
 from compilador.GeradorMIDI import GeradorMIDI
 import subprocess
 
@@ -16,8 +18,17 @@ if __name__ == '__main__':
 
     input_stream = FileStream(file_name, 'utf-8')
     lexer = notaLexer(input_stream)
+    lexer.removeErrorListeners()
+    erroSintatico = NotaErroSintatico(sys.stderr)
+    lexer.addErrorListener(erroSintatico)
     token_stream = CommonTokenStream(lexer)
+
+
     parser = notaParser(token_stream)
+    erroSemantico = NotaErroSemantico(sys.stderr)
+    parser.removeErrorListeners()
+    parser.addErrorListener(erroSemantico)
+    
     tree = parser.musica()
     
     va = AnalisadorSemantico()
