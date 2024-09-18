@@ -6,6 +6,7 @@ docker run \
     sintetizador_rust
 
 cp ./sintetizador/target/release/main compilador/sintetizador
+mkdir -p wav
 
 # Instalando as dependências
 python3 -m venv venv
