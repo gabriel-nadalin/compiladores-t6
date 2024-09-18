@@ -53,6 +53,7 @@ pub struct Player {
     synth: Synth,
     out: AudioOut,
     time: f64,
+    countdown: u32,
     
     kind: PlayerKind,
 }
@@ -61,7 +62,7 @@ impl Player {
     pub fn new(kind: PlayerKind, audio_mode: AudioMode) -> Self {
         let mut synth = Synth::new();
 
-        let voice = Instrument::lead_square(0.5);
+        let voice = Instrument::lead_square(0.2);
 
         synth.add_instrument(0, voice);
 
@@ -72,6 +73,7 @@ impl Player {
             kind,
             out,
             time: 0.,
+            countdown: SAMPLE_RATE / 2,
         }
     }
 
@@ -87,11 +89,13 @@ impl Player {
                 condition = midi_player.update(&mut self.synth, self.time);
             }
         }
-
+        if !condition {
+            self.countdown -= 1;
+        }
         let sample = self.synth.next_sample();
         self.out.send(bipolar2u8(sample));
         self.time += 1. / SAMPLE_RATE as f64;
-        condition
+        condition | (self.countdown > 0)
     }
 
     pub fn drain(&mut self) {

@@ -45,6 +45,10 @@ impl Instrument {
         let mut note = match self.kind {
             InstrumentKind::Melodic => {
                 let frequency = midi2freq(midi_note);
+                if let Some(note) = self.notes.get_mut(&midi_note) {
+                    note.note_on();
+                    return;
+                }
                 Note::from_env(self.waveform, frequency, self.lfo_amplitude, self.lfo, self.amp_envelope, self.freq_envelope, 0., self.effects.clone())
             }
             InstrumentKind::Percussive => {
@@ -80,7 +84,7 @@ impl Instrument {
     pub fn lead_square(volume: f32) -> Self {
         let kind = InstrumentKind::Melodic;
         let waveform = Waveform::Square;
-        let envelope = Envelope::new(0.03, 0.1, 0.7, 0.6, EnvelopeShape::Exponential);
+        let envelope = Envelope::new(0.03, 0.1, 0.6, 0.4, EnvelopeShape::Exponential);
         let lfo = Oscillator::new(Waveform::Sine, 5.);
         let effects = vec![];
         Self::new(kind, waveform, lfo, 0.008, envelope, None, volume, effects)

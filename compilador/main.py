@@ -1,7 +1,8 @@
 from antlr4 import CommonTokenStream, FileStream
-from antlr.notaLexer import notaLexer
-from antlr.notaParser import notaParser
+from compilador.antlr.notaLexer import notaLexer
+from compilador.antlr.notaParser import notaParser
 from compilador.AnalisadorSemantico import AnalisadorSemantico
+from compilador.GeradorMIDI import GeradorMIDI
 
 import sys
 
@@ -21,3 +22,8 @@ if __name__ == '__main__':
     va = AnalisadorSemantico()
     va.visitar_no(tree)
     va.mostrar_erros()
+
+    gerador = GeradorMIDI()
+    gerador.visitar_no(tree)
+    nome = file_name.split('.')[0].split('/')[-1] + '.mid'
+    gerador.arquivo.save("midi/" + nome)

@@ -89,7 +89,7 @@ impl Envelope {
                 self.level = 0.;
             }
             EnvelopeState::Attack => {
-                self.level = self.shape.attack(self.time, self.attack).min(1.);
+                self.level = self.shape.attack(self.time, self.attack).min(1.).max(self.level);
                 if self.time >= self.attack {
                     self.state = EnvelopeState::Decay;
                     self.time = 0.;

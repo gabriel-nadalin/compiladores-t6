@@ -1,6 +1,6 @@
 from antlr4 import ParserRuleContext as NoArvore
 from antlr4 import TerminalNode
-from antlr.notaParser import notaParser
+from compilador.antlr.notaParser import notaParser
 
 
 class AnalisadorSemantico:
