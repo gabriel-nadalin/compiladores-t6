@@ -1,0 +1,35 @@
+// EDM default tick = 350 + pausa 10
+// https://www.youtube.com/watch?v=3lHKxqhn51Q&ab_channel=JovaMusique-PianellaPiano
+frase lead{
+    B4(350)
+    pausa(40)
+    B4(350)
+    pausa(20)
+
+    A4(175)
+    pausa(20)
+    
+    B4(175)
+    pausa(20)
+    D5(175)
+    pausa(20)
+    B4(175)
+    pausa(100)
+
+
+
+    A4(175)
+    pausa(20)
+    B4(175)
+    pausa(20)
+    A4(175)
+    pausa(20)
+    D5(350)
+    pausa(20)
+    D5(350)
+    pausa(20)
+    D5(350)
+
+}
+
+lead

@@ -15,7 +15,7 @@ NOME=$(echo $1 | cut -d'.' -f1 | rev | cut -d'/' -f1 | rev)
 
 echo "gerando midi..."
 mkdir -p "midi"
-source venv/bin/activate
+# source venv/bin/activate
 python3 -m compilador.main $1
 MIDI="midi/$NOME.mid"
 
