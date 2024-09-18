@@ -1,5 +1,6 @@
 # Linguagem NOTA
 Notação Objetiva Tonal Audível
+Uma apresentação da linguagem pode ser encontrada em : https://drive.google.com/drive/folders/1RT8eKFo1_1T6KRy3NL8tELw8fHCr7z34?usp=sharing
 
 # Como rodar?
 1. Faça o setup inicial do projeto, buildando o sintetizador e instalando as dependências do python
