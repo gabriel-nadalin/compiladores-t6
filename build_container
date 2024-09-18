@@ -1,2 +1,2 @@
 #/bin/bash
-docker build -t nota --no-cache .
+docker build -t nota .

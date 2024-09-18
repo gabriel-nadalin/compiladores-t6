@@ -1,0 +1,54 @@
+pausa(1000)
+{ D5 F#5 B5 }(125)
+pausa(1000)
+{ D5 F#5 B5 }(125)
+pausa(1000)
+{ D5 F#5 B5 }(125)
+pausa(125)
+
+
+pausa(1000)
+{ D5 F#5 A5 }(125)
+pausa(1000)
+{ D5 F#5 A5 }(125)
+
+pausa(125)
+
+pausa(1000)
+{ D5 F#5 B5 }(125)
+pausa(1000)
+{ D5 F#5 B5 }(125)
+pausa(1000)
+{ D5 F#5 B5 }(125)
+
+pausa(125)
+
+pausa(1000)
+{ A4 C#5 F5 }(125)
+pausa(1000)
+{ A4 C#5 F5 }(125)
+
+pausa(125)
+
+pausa(1000)
+{ B4 D5 G5 }(125)
+pausa(1000)
+{ B4 D5 G5 }(125)
+pausa(1000)
+{ B4 D5 G5 }(125)
+
+pausa(125)
+
+pausa(1000)
+{ A4 D5 F#5 }(125)
+pausa(1000)
+{ A4 D5 F#5 }(125)
+
+pausa(125)
+
+pausa(1000)
+{ B4 D5 G5 }(125)
+pausa(1000)
+{ B4 D5 G5 }(125)
+pausa(1000)
+{ B4 D5 G5 }(125)

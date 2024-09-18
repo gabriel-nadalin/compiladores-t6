@@ -16,3 +16,5 @@ COPY requirements.txt .
 RUN /opt/antlr/antlr-venv/bin/python -m pip install -r requirements.txt
 
 WORKDIR /home
+COPY ./sintetizador .
+COPY ./run .

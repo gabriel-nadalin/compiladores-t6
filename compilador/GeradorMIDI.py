@@ -9,13 +9,14 @@ class GeradorMIDI:
         self.tabela_simbolos = {}
         # self.eventos = []
         # self.traducao_notas {'A'}
-        self.tempo = 0
+        self.pausa_offset = 0
         self.arquivo = MidiFile()
         self.trilha = MidiTrack()
         self.arquivo.tracks.append(self.trilha)
+        
 
     @classmethod
-    def note_to_midi(cls, note):
+    def note_to_midi(cls, note : str)->int:
     # Pitch class dictionary
         pitch_classes = {
             'C': 0, 'C#': 1, 'Db': 1, 'D': 2, 'D#': 3, 'Eb': 3,
@@ -34,6 +35,24 @@ class GeradorMIDI:
         
         return midi_note
 
+    def start_nota(self, nota : str, pausa_offset : int):
+        nota_midi = GeradorMIDI.note_to_midi(nota)
+        self.trilha.append(Message('note_on', note=nota_midi, time=1000 + pausa_offset))
+    
+    def stop_nota(self, nota : str, duracao : int):
+        nota_midi = GeradorMIDI.note_to_midi(nota)
+        self.trilha.append(Message('note_off', note=nota_midi, time=duracao))
+
+
+    def get_notas_acorde_ident(self, acorde_ident : notaParser.Acorde_identContext):
+        child = acorde_ident.getChild(0)
+        if isinstance(child, notaParser.AcordeContext):
+            lista_notas = []
+            for nota in list(child.getChildren())[1:-1]:     # Excluindo o primeiro e o último elementos ('{' e '}')
+                lista_notas.append(nota.getText())
+            return lista_notas
+        return self.tabela_simbolos[child.getText()]
+
     def visitar_no(self, no: NoArvore):
         if isinstance(no, TerminalNode):
             return
@@ -43,22 +62,27 @@ class GeradorMIDI:
             case notaParser.Evento_tempoContext():
             # (NOTA | acorde_ident | 'pausa') '(' duracao ')';
                 child = children[0]
+                notas_para_tocar = []
+                duracao = second2tick(int(children[2].getText()) / 1000, 480, 500_000)
                 if isinstance(child, TerminalNode):
-                    duracao = second2tick(int(children[2].getText()) / 1000, 480, 500_000)
                     print(duracao)
 
                     if child.getText() == 'pausa':
-                        self.tempo += duracao
+                        self.pausa_offset += duracao
+                        # self.pausa_offset += duracao
                         return
-                    
-                    nota_midi = GeradorMIDI.note_to_midi(child.getText())
-                    self.trilha.append(Message('note_on', note=nota_midi, time=self.tempo))
-                    self.trilha.append(Message('note_off', note=nota_midi, time=duracao))
-                    self.tempo = 0
+                    notas_para_tocar.append(child.getText())
                     print(self.arquivo)
-                    return
+                else:
+                    notas_para_tocar = self.get_notas_acorde_ident(child)
+                for nota in notas_para_tocar:
+                    self.start_nota(nota, self.pausa_offset)
+
+                for nota in notas_para_tocar:
+                    self.stop_nota(nota, duracao)
                 
-                self.visitar_no(child)
+                # self.visitar_no(child)
+                # self.pausa_offset += duracao
 
 
             case notaParser.Declaracao_fraseContext():
@@ -79,15 +103,15 @@ class GeradorMIDI:
                 linha = children[1].symbol.line
                 self.tabela_simbolos[ident_txt] = children[-1]
                 
-            case notaParser.AcordeContext():
-                lista_notas = []
-                for nota in children[1:-2]:     # Excluindo o primeiro e o último elementos ('{' e '}')
-                    nome_nota = nota.getText()
-                    if nome_nota in lista_notas:
-                        linha = nota.symbol.line
-                        self.erros.append(f"Erro na linha {linha}: A nota \'{nome_nota}\' foi definida multiplas vezes no mesmo acorde")        # TODO: pegar o nome do pai
-                        return
-                    lista_notas.append(nome_nota)
+            # case notaParser.AcordeContext():
+            #     lista_notas = []
+            #     for nota in children[1:-2]:     # Excluindo o primeiro e o último elementos ('{' e '}')
+            #         nome_nota = nota.getText()
+            #         nota_midi = GeradorMIDI.note_to_midi(child.getText())
+            #         self.trilha.append(Message('note_on', note=nota_midi, time=self.pausa_offset))
+            #         self.trilha.append(Message('note_off', note=nota_midi, time=duracao))
+            #         self.pausa_offset = 0
+            #         print(self.arquivo)
                 
             case notaParser.Acorde_identContext():
                 child = children[0]         # Somente filho único do nó atual
